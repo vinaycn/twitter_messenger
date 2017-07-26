@@ -6,6 +6,7 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import org.twitter.messenger.model.Person;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
 import org.twitter.messenger.service.SocialService;
 
+
+@CrossOrigin(origins="http://localhost:8080/",maxAge=7000)
 @RestController
 @RequestMapping("/people/{followerPersonId}/")
 public class SocialController {

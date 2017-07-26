@@ -24,7 +24,6 @@ public class ExceptionController {
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleNotFoundException(final HttpServletRequest request) {
-		System.out.println("Not found");
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Resource Not found");
 		errorMessage.setDeveloperMessage(request.getContextPath() + "Not found");
@@ -77,6 +76,21 @@ public class ExceptionController {
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
 	}
 
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public ResponseEntity<ErrorMessage> handleBadRequest(final Exception exception,
+			final HttpServletRequest request) {
+
+		ErrorMessage errorMessage = new ErrorMessage();
+		errorMessage.setMessage("Bad Request");
+		errorMessage.setDeveloperMessage(exception.getMessage());
+		errorMessage.setStatus(HttpStatus.BAD_REQUEST);
+		// logger.error("Badrequest " + request.toString() + "With exception
+		// message " + exception.getMessage());
+		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.BAD_REQUEST);
+	}
+	
 	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleUserNotFound(final Exception exception,
