@@ -37,13 +37,14 @@ public class SocialService implements ISocialService {
 	@Override
 	@Transactional
 	public void unFollow(int personId, int followerPersonId) {
-		socialDaoImpl.follow(personId, followerPersonId);
+
+		socialDaoImpl.unFollow(personId, followerPersonId);
 	}
 
 	@Override
 	@Transactional
 	public void follow(int personId, int followerPersonId) {
-		socialDaoImpl.unFollow(personId, followerPersonId);
+		socialDaoImpl.follow(personId, followerPersonId);
 	}
 
 }

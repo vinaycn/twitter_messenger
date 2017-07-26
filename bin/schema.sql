@@ -19,6 +19,5 @@ CREATE TABLE followers (
     id IDENTITY,
     person_id NUMBER REFERENCES people (id),
     follower_person_id NUMBER REFERENCES people (id),
-    follow_flag CHAR,
-    status_flag CHAR
+    follow_flag CHAR
 );

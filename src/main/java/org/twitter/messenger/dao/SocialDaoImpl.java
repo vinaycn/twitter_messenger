@@ -16,71 +16,57 @@ public class SocialDaoImpl implements ISocialDao {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	String getMessageQuery = "SELECT messages.content, messages.person_id, people.name FROM (messages "
-			+ " JOIN people  ON (messages.person_id = people.id)) WHERE"
-			+ " (messages.person_id in (SELECT followers.follower_person_id FROM followers WHERE followers.person_id = :personId)"
-			+ " OR (messages.person_id = :personId))";
-
-
 	@Override
 	public List<PersonWrapper> getFollowers(int personId) {
 		// TODO Auto-generated method stub
-		
+
 		String followers = "SELECT people.name, people.handle, people.id, followers.follow_flag FROM (people JOIN "
-				+ " followers ON (followers.follower_person_id = people.id)) WHERE people.id "
-				+ "in (SELECT followers.follower_person_id FROM followers WHERE (followers.person_id = :personId "
-				+ " and followers.status_flag = :statusFlag ))";
-		Map<String,Object> followerFields = new HashMap<>();
+				+ " followers ON (people.id = followers.follower_person_id)) WHERE people.id "
+				+ "in (SELECT followers.follower_person_id FROM followers WHERE (followers.person_id = :personId))";
+		Map<String, Object> followerFields = new HashMap<>();
 		followerFields.put("personId", personId);
-		followerFields.put("statusFlag",'A');
 		return namedParameterJdbcTemplate.query(followers, followerFields, new PersonRowMapper());
 	}
 
-	
-
 	@Override
-	public void unFollow(int personId, int followerPersonId) {
-		String unFollowQuery = "UPDATE followers set status_flag = :statusFlag WHERE "
-				+ " follower.person_id = :personId and follower.follower_person_id = :followerPersonId";
-		Map<String,Object> unFollowFields = new HashMap<>();
-		unFollowFields.put("personId",personId);
-		unFollowFields.put("followerPersonId",followerPersonId);
-		unFollowFields.put("statusFlag",'I');
+	public void unFollow(int unFollowpersonId, int followerPersonId) {
+		String unFollowQuery = "UPDATE followers set follow_flag =:followFlag WHERE "
+				+ " (followers.person_id = :followerPersonId AND followers.follower_person_id = :unFollowpersonId)";
+		Map<String, Object> unFollowFields = new HashMap<>();
+		unFollowFields.put("unFollowpersonId", unFollowpersonId);
+		unFollowFields.put("followerPersonId", followerPersonId);
+		unFollowFields.put("followFlag", 'F');
 		namedParameterJdbcTemplate.update(unFollowQuery, unFollowFields);
-		//after unfollow update the follow_flag 
-		String updateUnFollowTag = "UPDATE followers set follow_flag = :followFlag WHERE "
-				+ " follower.person_id = :followerPersonId and  follower.follower_person_id = :personId";
-		unFollowFields.put("followFlag",'F');
-		namedParameterJdbcTemplate.update(updateUnFollowTag, unFollowFields);
+		// after changing follow_flag delete the entry
+		String deleteFollower = "DELETE FROM followers WHERE "
+				+ "(followers.person_id = :unFollowpersonId AND followers.follower_person_id = :followerPersonId)";
+		namedParameterJdbcTemplate.update(deleteFollower, unFollowFields);
 	}
 
 	@Override
 	public void follow(int followingPersonId, int followerPersonId) {
 
-		String checkFollow = "Select count(followers.id) FROM followers (:followerPersonId,:followingPersonId,:statusFlag)";
-		Map<String,Object> followFields = new HashMap<>();
+		String checkFollower = "UPDATE followers set followers.follow_flag = :followFlag  WHERE (followers.person_id = :followerPersonId"
+				+ " AND followers.follower_person_id = :followingPersonId)";
+		Map<String, Object> followFields = new HashMap<>();
 		followFields.put("followingPersonId", followingPersonId);
-		followFields.put("followingPersonId", followingPersonId);
-		followFields.put("statusFlag",'A');
-		int count = namedParameterJdbcTemplate.queryForObject(checkFollow, followFields, Integer.class);
-		char c;
-		if(count!=0) c = 'U';
-		else c = 'F';
-		followFields.put("followFlag",c);
-		String follow = "INSERT INTO followers(:followingPersonId,:followerPersonId,:followFlag)";
+		followFields.put("followerPersonId", followerPersonId);
+		followFields.put("followFlag", 'U');
+		int count = namedParameterJdbcTemplate.update(checkFollower, followFields);
+		if (count == 0) {
+			followFields.put("followFlag",'F');
+		}
+		String follow = "INSERT INTO followers (person_id,follower_person_id, follow_flag) VALUES (:followingPersonId,:followerPersonId,:followFlag)";
 		namedParameterJdbcTemplate.update(follow, followFields);
 	}
-	
-	
+
 	@Override
 	public List<PersonWrapper> getFollowings(int personId) {
 		String followings = "SELECT people.name, people.handle, people.id,followers.follow_flag FROM (people JOIN "
-				+ " followers ON (followers.person_id = people.id)) WHERE people.id "
-				+ "in (SELECT followers.person_id FROM followers WHERE (followers.follower_person_id = :personId "
-				+ " and followers.status_flag = :statusFlag ))";
-		Map<String,Object> followingsFields = new HashMap<>();
+				+ " followers ON (people.id = followers.person_id)) WHERE people.id "
+				+ "in (SELECT followers.person_id FROM followers WHERE (followers.follower_person_id = :personId)) ";
+		Map<String, Object> followingsFields = new HashMap<>();
 		followingsFields.put("personId", personId);
-		followingsFields.put("statusFlag",'A');
 		return namedParameterJdbcTemplate.query(followings, followingsFields, new PersonRowMapper());
 	}
 

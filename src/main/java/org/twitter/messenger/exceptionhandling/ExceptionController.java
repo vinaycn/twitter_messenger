@@ -3,11 +3,10 @@ package org.twitter.messenger.exceptionhandling;
 import javax.servlet.http.HttpServletRequest;
 
 import org.h2.jdbc.JdbcSQLException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,6 +46,22 @@ public class ExceptionController {
 		// logger.error("Badrequest " + request.toString() + "With exception
 		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	@ResponseBody
+	public ResponseEntity<ErrorMessage> handleMethodNotAllowed(final Exception exception,
+			final HttpServletRequest request) {
+
+		ErrorMessage errorMessage = new ErrorMessage();
+		errorMessage.setMessage("Method not allowed");
+		errorMessage.setDeveloperMessage(exception.getMessage());
+		errorMessage.setStatus(HttpStatus.METHOD_NOT_ALLOWED);
+		// logger.error("Badrequest " + request.toString() + "With exception
+		// message " + exception.getMessage());
+		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
 	}
 	
 	

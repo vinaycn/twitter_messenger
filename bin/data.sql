@@ -170,18 +170,16 @@ VALUES
     (1, 'sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus');
 
 -- Followers
-INSERT INTO followers(person_id, follower_person_id,follow_flag,status_flag)
+INSERT INTO followers(person_id, follower_person_id,follow_flag)
 VALUES
-    (8, 4, 'U','A'),
-    (4, 8, 'U','I'),
-    (3, 2, 'F','A'),
-    (3, 6, 'U','I'),
-    (6, 3, 'U','A'),
-    (2, 4, 'F','A'),
-    (5, 1, 'U','I'),
-    (1, 5, 'U','I'),
-    (9, 2, 'F','A'),
-    (9, 6, 'U','I'),
-    (6, 9, 'U','A'),
-    (10,3, 'F','I'),
-    (3, 9, 'F','A');
+    (8, 4, 'F'),
+    (8, 2, 'F'),
+    (3, 4, 'U'),
+    (4, 3, 'U'),
+    (1, 2, 'F'),
+    (2, 6, 'F'),
+    (3, 7, 'U'),
+    (7, 3, 'F'),
+    (10, 1, 'F'),
+    (5, 9, 'F');
+    
