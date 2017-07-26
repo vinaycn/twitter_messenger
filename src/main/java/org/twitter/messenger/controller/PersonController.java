@@ -13,7 +13,7 @@ import org.twitter.messenger.model.Person;
 import org.twitter.messenger.service.PersonService;
 
 
-@CrossOrigin(origins="http://localhost:8080/",maxAge=7000)
+
 @RestController
 @RequestMapping("/people")
 public class PersonController {
