@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebSecurity
@@ -27,14 +28,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors()
-		.and().authorizeRequests().antMatchers("/h2-console/*").permitAll();
-		//.anyRequest().authenticated().and()
-				//.httpBasic().authenticationEntryPoint(myBasicAuthenticationEntryPoint);
+		.and().authorizeRequests().antMatchers("/h2-console/*").permitAll()
+		.anyRequest().authenticated().and()
+				.httpBasic().authenticationEntryPoint(myBasicAuthenticationEntryPoint);
 
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
 	}
 
+	
 	
 	
 	
@@ -47,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080/"));
-		configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE"));
+		configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","OPTION"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;

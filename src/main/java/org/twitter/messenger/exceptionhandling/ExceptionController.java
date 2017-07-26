@@ -15,13 +15,12 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @ControllerAdvice
-@EnableWebMvc
 public class ExceptionController {
 
 	// private static final Logger logger =
 	// LoggerFactory.getLogger(ExceptionController.class);
 
-	@ExceptionHandler(NoHandlerFoundException.class)
+	/*@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleNotFoundException(final HttpServletRequest request) {
 		ErrorMessage errorMessage = new ErrorMessage();
@@ -29,7 +28,7 @@ public class ExceptionController {
 		errorMessage.setDeveloperMessage(request.getContextPath() + "Not found");
 		errorMessage.setStatus(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
-	}
+	}*/
 
 	@ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
@@ -41,8 +40,6 @@ public class ExceptionController {
 		errorMessage.setMessage("unsupported Media type. Unable to process request");
 		errorMessage.setDeveloperMessage(exception.getMessage());
 		errorMessage.setStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
-		// logger.error("Badrequest " + request.toString() + "With exception
-		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
 	}
 
@@ -56,8 +53,6 @@ public class ExceptionController {
 		errorMessage.setMessage("Sorry unable to process request");
 		errorMessage.setDeveloperMessage("Error in Sql");
 		errorMessage.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-		// logger.error("Badrequest " + request.toString() + "With exception
-		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
@@ -71,8 +66,6 @@ public class ExceptionController {
 		errorMessage.setMessage("Method not allowed");
 		errorMessage.setDeveloperMessage(exception.getMessage());
 		errorMessage.setStatus(HttpStatus.METHOD_NOT_ALLOWED);
-		// logger.error("Badrequest " + request.toString() + "With exception
-		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
 	}
 
@@ -86,8 +79,6 @@ public class ExceptionController {
 		errorMessage.setMessage("Bad Request");
 		errorMessage.setDeveloperMessage(exception.getMessage());
 		errorMessage.setStatus(HttpStatus.BAD_REQUEST);
-		// logger.error("Badrequest " + request.toString() + "With exception
-		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.BAD_REQUEST);
 	}
 	
@@ -101,8 +92,6 @@ public class ExceptionController {
 		errorMessage.setMessage("Invalid person id");
 		errorMessage.setDeveloperMessage(exception.getMessage());
 		errorMessage.setStatus(HttpStatus.NOT_FOUND);
-		// logger.error("Badrequest " + request.toString() + "With exception
-		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
 	}
 
