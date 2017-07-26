@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
-import org.twitter.messenger.utils.PersonRowMapper;
+import org.twitter.messenger.utils.PersonWrapperRowMapper;
 
 @Repository
 public class SocialDaoImpl implements ISocialDao {
@@ -25,7 +25,7 @@ public class SocialDaoImpl implements ISocialDao {
 				+ "in (SELECT followers.follower_person_id FROM followers WHERE (followers.person_id = :personId))";
 		Map<String, Object> followerFields = new HashMap<>();
 		followerFields.put("personId", personId);
-		return namedParameterJdbcTemplate.query(followers, followerFields, new PersonRowMapper());
+		return namedParameterJdbcTemplate.query(followers, followerFields, new PersonWrapperRowMapper());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class SocialDaoImpl implements ISocialDao {
 				+ "in (SELECT followers.person_id FROM followers WHERE (followers.follower_person_id = :personId)) ";
 		Map<String, Object> followingsFields = new HashMap<>();
 		followingsFields.put("personId", personId);
-		return namedParameterJdbcTemplate.query(followings, followingsFields, new PersonRowMapper());
+		return namedParameterJdbcTemplate.query(followings, followingsFields, new PersonWrapperRowMapper());
 	}
 
 }
