@@ -27,6 +27,9 @@ public class PersonController {
 		return new ResponseEntity<List<Person>>(personService.getPeople(),HttpStatus.OK);
 	}
 	
-	
+	@RequestMapping(value = "/{peronId}")
+	public ResponseEntity<Person> getPerson(){
+		return null;
+	}
 	
 }
