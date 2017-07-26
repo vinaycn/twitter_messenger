@@ -30,9 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.twitter.messenger.ChallengeApplication;
-import org.twitter.messenger.modelwrapper.MessageWrapper;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
-import org.twitter.messenger.service.MessageService;
 import org.twitter.messenger.service.PersonService;
 import org.twitter.messenger.service.SocialService;
 
@@ -42,7 +40,7 @@ import org.twitter.messenger.service.SocialService;
 public class SocialControllerTest {
 	private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-	
+
 	private MockMvc mockMvc;
 
 	@MockBean
@@ -55,8 +53,6 @@ public class SocialControllerTest {
 	private WebApplicationContext wac;
 
 	private HttpMessageConverter mappingJackson2HttpMessageConverter;
-
-	
 
 	@Before
 	public void setup() {
@@ -72,24 +68,19 @@ public class SocialControllerTest {
 		assertNotNull("the JSON message converter must not be null", this.mappingJackson2HttpMessageConverter);
 	}
 
-	@Test
-	public void follow() throws Exception {
-		List<MessageWrapper> messageList = new ArrayList<>();
-		MessageWrapper message = new MessageWrapper();
-		message.setContent("hello");
-		message.setPersonId(1);
-		messageList.add(message);
-		MessageWrapper message1 = new MessageWrapper();
-		message1.setContent("hello wats up");
-		message1.setPersonId(1);
-		messageList.add(message1);
-		when(this.messageService.getMessage(1)).thenReturn(messageList);
-		when(this.personService.validatePerson(1)).thenReturn(true);
-		mockMvc.perform(get("/people/1/messages"))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(contentType))
-		.andExpect(jsonPath("$", hasSize(2)));
-	}
+	/*
+	 * @Test public void follow() throws Exception {
+	 * when(this.socialService.follow(2,1));
+	 * mockMvc.perform(post("/people/1/followers/2"))
+	 * .andExpect(status().isOk())
+	 * .andExpect(content().contentType(contentType)) .andExpect(jsonPath("$",
+	 * hasSize(1))); }
+	 * 
+	 * @Test public void unfollow() throws Exception {
+	 * mockMvc.perform(get("/people/1/followers")) .andExpect(status().isOk())
+	 * .andExpect(content().contentType(contentType)) .andExpect(jsonPath("$",
+	 * hasSize(1))); }
+	 */
 
 	@Test
 	public void getFollowers() throws Exception {
@@ -100,47 +91,23 @@ public class SocialControllerTest {
 		followersList.add(personWrapper);
 		when(this.socialService.getFollowers(1)).thenReturn(followersList);
 		when(this.personService.validatePerson(1)).thenReturn(true);
-		mockMvc.perform(get("/people/1/followers"))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(contentType))
-		.andExpect(jsonPath("$", hasSize(2)));
+		mockMvc.perform(get("/people/1/followers")).andExpect(status().isOk())
+				.andExpect(content().contentType(contentType)).andExpect(jsonPath("$", hasSize(1)));
 	}
 
 	@Test
-	public void getFollowwings() throws Exception {
-		List<PersonWrapper> followersList = new ArrayList<>();
+	public void getFollowings() throws Exception {
+		List<PersonWrapper> followingList = new ArrayList<>();
 		PersonWrapper personWrapper = new PersonWrapper();
 		personWrapper.setName("Vinay");
 		personWrapper.setHandle("ranbir");
-		followersList.add(personWrapper);
-		when(this.socialService.getFollowers(1)).thenReturn(followersList);
+		followingList.add(personWrapper);
+		when(this.socialService.getFollowings(1)).thenReturn(followingList);
 		when(this.personService.validatePerson(1)).thenReturn(true);
-		mockMvc.perform(get("/people/1/followers"))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(contentType))
-		.andExpect(jsonPath("$", hasSize(2)));
+		mockMvc.perform(get("/people/1/following")).andExpect(status().isOk())
+				.andExpect(content().contentType(contentType)).andExpect(jsonPath("$", hasSize(1)));
 	}
-	
-	@Test
-	public void unfollow() throws Exception {
-		List<MessageWrapper> messageList = new ArrayList<>();
-		MessageWrapper message = new MessageWrapper();
-		message.setContent("hello");
-		message.setPersonId(1);
-		messageList.add(message);
-		MessageWrapper message1 = new MessageWrapper();
-		message1.setContent("hello wats up");
-		message1.setPersonId(1);
-		messageList.add(message1);
-		when(this.messageService.getMessage(1)).thenReturn(messageList);
-		when(this.personService.validatePerson(1)).thenReturn(true);
-		mockMvc.perform(get("/people/1/messages"))
-		.andExpect(status().isOk())
-		.andExpect(content().contentType(contentType))
-		.andExpect(jsonPath("$", hasSize(2)));
-	}
-	
-	
+
 	protected String json(Object o) throws IOException {
 		MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
 		this.mappingJackson2HttpMessageConverter.write(o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);

@@ -21,7 +21,7 @@ public class SocialDaoImpl implements ISocialDao {
 		// TODO Auto-generated method stub
 
 		String followers = "SELECT people.name, people.handle, people.id, followers.follow_flag FROM (people JOIN "
-				+ " followers ON (people.id = followers.follower_person_id)) WHERE people.id "
+				+ " followers ON (people.id = followers.person_id)) WHERE people.id "
 				+ "in (SELECT followers.follower_person_id FROM followers WHERE (followers.person_id = :personId))";
 		Map<String, Object> followerFields = new HashMap<>();
 		followerFields.put("personId", personId);
