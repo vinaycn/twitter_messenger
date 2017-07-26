@@ -11,12 +11,26 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @ControllerAdvice
+@EnableWebMvc
 public class ExceptionController {
 
 	// private static final Logger logger =
 	// LoggerFactory.getLogger(ExceptionController.class);
+
+	@ExceptionHandler(NoHandlerFoundException.class)
+	@ResponseBody
+	public ResponseEntity<ErrorMessage> handleNotFoundException(final HttpServletRequest request) {
+		System.out.println("Not found");
+		ErrorMessage errorMessage = new ErrorMessage();
+		errorMessage.setMessage("Resource Not found");
+		errorMessage.setDeveloperMessage(request.getContextPath() + "Not found");
+		errorMessage.setStatus(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
+	}
 
 	@ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
@@ -47,8 +61,7 @@ public class ExceptionController {
 		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
-	
+
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody
@@ -63,8 +76,7 @@ public class ExceptionController {
 		// message " + exception.getMessage());
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
 	}
-	
-	
+
 	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleUserNotFound(final Exception exception,
