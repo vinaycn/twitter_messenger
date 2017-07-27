@@ -18,11 +18,25 @@ public class MessageService implements IMessageService {
 	@Autowired
 	private MessageDaoImpl messageDaoImpl;
 
+	
+	/***
+	 * will post a message for one person
+	 * 
+	 * @param message 
+	 *         message body
+	 */
 	@Override
 	public void postMessage(Message message) {
 		messageDaoImpl.addMessage(message);
 	}
 
+	
+	/***
+	 * Get all the messages for the given personId
+	 * 
+	 * @param personId 
+	 * @return return list of MessageWrapper for the given personId
+	 */
 	@Override
 	public List<MessageWrapper> getMessage(int personId) {
 		List<MessageWrapper> messageWrapperList = messageDaoImpl.getMessages(personId);

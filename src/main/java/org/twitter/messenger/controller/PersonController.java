@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.twitter.messenger.model.Person;
 import org.twitter.messenger.service.PersonService;
@@ -21,12 +22,25 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 
+	
+	/***
+	 * 
+	 * @return list of all people 
+	 */
 	@GetMapping
 	public ResponseEntity<List<Person>> getPeople() {
 		return new ResponseEntity<List<Person>>(personService.getPeople(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{personId}")
+	
+	/***
+	 * will get person info for the given id
+	 * 
+	 * @param personId
+	 *           
+	 * @return person object for the given PersonId
+	 */
+	@RequestMapping(method=RequestMethod.POST,value = "/{personId}")
 	public ResponseEntity<Person> getPerson(@PathVariable("personId") String personId) {
 		return new ResponseEntity<Person>(personService.getPersonInfo(Integer.valueOf(personId)), HttpStatus.OK);
 	}

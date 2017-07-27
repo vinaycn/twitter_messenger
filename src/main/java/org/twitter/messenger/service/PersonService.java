@@ -22,6 +22,14 @@ public class PersonService implements IPersonService {
 	@Autowired
 	private PersonDaoImpl personDaoImpl;
 
+	
+	/***
+	 * @param personid 
+	 *          given personId
+	 * 
+	 * @return check if personId exists or not
+	 * 
+	 */
 	@Override
 	public boolean validatePerson(int personId) {
 		if (personDaoImpl.validatePerson(personId) == 0)
@@ -31,6 +39,11 @@ public class PersonService implements IPersonService {
 
 	}
 
+	
+	/***
+	 * 
+	 * @return return list of people
+	 */
 	@Override
 	public List<Person> getPeople() {
 
@@ -41,6 +54,11 @@ public class PersonService implements IPersonService {
 		return personList;
 	}
 
+	/***
+	 * @param id 
+	 *         given personId
+	 * @return return person info for the given id
+	 */
 	@Override
 	public Person getPersonInfo(int id) {
 		Person person = personDaoImpl.getPersonInfo(id);

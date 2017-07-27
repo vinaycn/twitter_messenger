@@ -18,6 +18,15 @@ public class SocialService implements ISocialService {
 	@Autowired
 	private SocialDaoImpl socialDaoImpl;
 
+	
+	/***
+	 * 
+	 * return all followers for the given personId
+	 * 
+	 * @param personId
+	 * 
+	 * @return will return list followers for the given personId 
+	 */
 	@Override
 	public List<PersonWrapper> getFollowers(int personId) {
 		List<PersonWrapper> followersList = socialDaoImpl.getFollowers(personId);
@@ -26,6 +35,15 @@ public class SocialService implements ISocialService {
 		return followersList;
 	}
 
+	
+	/***
+	 * 
+	 * return all following for the given personId
+	 * 
+	 * @param personId
+	 * 
+	 * @return will return list following for the given personId 
+	 */
 	@Override
 	public List<PersonWrapper> getFollowings(int personId) {
 		List<PersonWrapper> followersList = socialDaoImpl.getFollowings(personId);
@@ -34,6 +52,15 @@ public class SocialService implements ISocialService {
 		return followersList;
 	}
 
+	/***
+	 * 
+	 * unfollow a person
+	 * 
+	 * @param personId
+	 *           personId to  unfollow
+	 * @param followerPersonId
+	 *           followerPersonId who raised unfollow request
+	 */
 	@Override
 	@Transactional
 	public void unFollow(int personId, int followerPersonId) {
@@ -41,6 +68,16 @@ public class SocialService implements ISocialService {
 		socialDaoImpl.unFollow(personId, followerPersonId);
 	}
 
+	
+	/***
+	 * 
+	 * follow a person
+	 * 
+	 * @param personId
+	 *           personId to  follow
+	 * @param followerPersonId
+	 *           followerPersonId who raised follow request 
+	 */
 	@Override
 	@Transactional
 	public void follow(int personId, int followerPersonId) {

@@ -15,12 +15,13 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @ControllerAdvice
+@EnableWebMvc
 public class ExceptionController {
 
 	// private static final Logger logger =
 	// LoggerFactory.getLogger(ExceptionController.class);
 
-	/*@ExceptionHandler(NoHandlerFoundException.class)
+	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleNotFoundException(final HttpServletRequest request) {
 		ErrorMessage errorMessage = new ErrorMessage();
@@ -28,7 +29,7 @@ public class ExceptionController {
 		errorMessage.setDeveloperMessage(request.getContextPath() + "Not found");
 		errorMessage.setStatus(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
-	}*/
+	}
 
 	@ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
@@ -57,7 +58,7 @@ public class ExceptionController {
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+	
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleMethodNotAllowed(final Exception exception,
@@ -83,6 +84,7 @@ public class ExceptionController {
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.BAD_REQUEST);
 	}
 	
+	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleUserNotFound(final Exception exception,

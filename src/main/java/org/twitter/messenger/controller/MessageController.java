@@ -37,7 +37,7 @@ public class MessageController {
 	/**
 	 * Endpoint to get all the messages of the users
 	 * 
-	 * @return
+	 * @return list of all messages for the user and its followers
 	 */
 	@GetMapping
 	public ResponseEntity<List<MessageWrapper>> getMessages(@PathVariable("myId") String id,@RequestParam(required=false) String search){
@@ -50,7 +50,7 @@ public class MessageController {
 	/**
 	 * Endpoint to post a message by the user
 	 * 
-	 * 
+	 * @return HTTP status Created if its is successful
 	 */
 	@RequestMapping(method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Void> postMessage(@RequestBody Message message,@PathVariable("myId") String myId){
