@@ -15,6 +15,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.twitter.messenger.ChallengeApplication;
 import org.twitter.messenger.dao.SocialDaoImpl;
+import org.twitter.messenger.model.Person;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
 
 
@@ -42,7 +43,7 @@ public class SocialDaoTests {
 	
 	@Test
 	public void getFollowings(){
-		List<PersonWrapper> followingList= socialDaoImpl.getFollowings(3);
+		List<Person> followingList= socialDaoImpl.getFollowings(3);
 		Assert.assertEquals(2,followingList.size());
 	}
 	
@@ -51,7 +52,7 @@ public class SocialDaoTests {
 	public void follow(){
 		//personId 2 wants to follow 1
 		socialDaoImpl.follow(2,1);
-		List<PersonWrapper> followingList= socialDaoImpl.getFollowings(1);
+		List<Person> followingList= socialDaoImpl.getFollowings(1);
 		Assert.assertEquals(2,followingList.size());
 	}
 	

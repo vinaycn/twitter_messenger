@@ -45,8 +45,8 @@ public class SocialService implements ISocialService {
 	 * @return will return list following for the given personId 
 	 */
 	@Override
-	public List<PersonWrapper> getFollowings(int personId) {
-		List<PersonWrapper> followersList = socialDaoImpl.getFollowings(personId);
+	public List<Person> getFollowings(int personId) {
+		List<Person> followersList = socialDaoImpl.getFollowings(personId);
 		followersList.stream().forEach(
 				person -> person.add(linkTo(PersonController.class).slash(person.getPersonId()).withSelfRel()));
 		return followersList;

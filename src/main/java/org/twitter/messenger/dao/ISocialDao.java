@@ -9,7 +9,7 @@ public interface ISocialDao {
 
     public List<PersonWrapper> getFollowers(int personId);
 	
-	public List<PersonWrapper> getFollowings(int personId);
+	public List<Person> getFollowings(int personId);
 	
 	public void unFollow(int personId,int followerPersonId);
 	

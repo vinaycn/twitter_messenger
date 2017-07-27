@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.twitter.messenger.ChallengeApplication;
+import org.twitter.messenger.model.Person;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
 import org.twitter.messenger.service.PersonService;
 import org.twitter.messenger.service.SocialService;
@@ -97,8 +98,8 @@ public class SocialControllerTest {
 
 	@Test
 	public void getFollowings() throws Exception {
-		List<PersonWrapper> followingList = new ArrayList<>();
-		PersonWrapper personWrapper = new PersonWrapper();
+		List<Person> followingList = new ArrayList<>();
+		Person personWrapper = new Person();
 		personWrapper.setName("Vinay");
 		personWrapper.setHandle("ranbir");
 		followingList.add(personWrapper);

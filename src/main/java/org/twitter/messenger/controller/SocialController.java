@@ -104,11 +104,11 @@ public class SocialController {
 	 *            
 	 */
 	@GetMapping("/following")
-	public ResponseEntity<List<PersonWrapper>> getFollowings(@PathVariable("myId") String personId) {
+	public ResponseEntity<List<Person>> getFollowings(@PathVariable("myId") String personId) {
 		
 		int id = Integer.valueOf(personId);
 		if(!personService.validatePerson(id))
 			throw new UserNotFoundException(id);
-		return new ResponseEntity<List<PersonWrapper>>(socialService.getFollowings(id), HttpStatus.OK);
+		return new ResponseEntity<List<Person>>(socialService.getFollowings(id), HttpStatus.OK);
 	}
 }
