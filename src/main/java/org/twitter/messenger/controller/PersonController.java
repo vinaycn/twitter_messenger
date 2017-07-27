@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.twitter.messenger.model.Person;
 import org.twitter.messenger.service.PersonService;
 
-@CrossOrigin(origins = "http://localhost:8080/")
+
 @RestController
 @RequestMapping("/people")
 public class PersonController {
