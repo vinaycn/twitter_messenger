@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.twitter.messenger.exceptionhandling.UserNotFoundException;
 import org.twitter.messenger.model.Person;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
+import org.twitter.messenger.service.PersonService;
 import org.twitter.messenger.service.SocialService;
 
 
@@ -25,6 +27,9 @@ public class SocialController {
 
 	@Autowired
 	private SocialService socialService;
+	
+	@Autowired
+	private PersonService personService;
 
 	/**
 	 * Endpoint to get all the followers for the user
@@ -37,6 +42,9 @@ public class SocialController {
 	@GetMapping("/followers")
 	public ResponseEntity<List<PersonWrapper>> getFollowers(@PathVariable("myId") String personId) {
 		int id = Integer.valueOf(personId);
+		if(!personService.validatePerson(id))
+			throw new UserNotFoundException(id);
+		
 		return new ResponseEntity<List<PersonWrapper>>(socialService.getFollowers(id), HttpStatus.OK);
 	}
 
@@ -54,7 +62,12 @@ public class SocialController {
 	 */
 	@RequestMapping(value = "/followers/{followPersonId}", method = RequestMethod.POST)
 	public ResponseEntity<Void> addFollower(@PathVariable("followPersonId") String personId,@PathVariable("myId") String followerPersonId) {
-       socialService.follow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
+		if(!personService.validatePerson(Integer.parseInt(personId)))
+			throw new UserNotFoundException(Integer.parseInt(personId));
+		if(!personService.validatePerson(Integer.parseInt(followerPersonId)))
+			throw new UserNotFoundException(Integer.parseInt(followerPersonId));
+		
+	    socialService.follow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
 	   return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
@@ -72,6 +85,11 @@ public class SocialController {
 	 */
 	@RequestMapping(value = "/followers/{personId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> unFollow(@PathVariable("personId") String personId,@PathVariable("myId") String followerPersonId) {
+		if(!personService.validatePerson(Integer.parseInt(personId)))
+			throw new UserNotFoundException(Integer.parseInt(personId));
+		if(!personService.validatePerson(Integer.parseInt(followerPersonId)))
+			throw new UserNotFoundException(Integer.parseInt(followerPersonId));
+		
 		socialService.unFollow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
@@ -87,7 +105,10 @@ public class SocialController {
 	 */
 	@GetMapping("/following")
 	public ResponseEntity<List<PersonWrapper>> getFollowings(@PathVariable("myId") String personId) {
+		
 		int id = Integer.valueOf(personId);
+		if(!personService.validatePerson(id))
+			throw new UserNotFoundException(id);
 		return new ResponseEntity<List<PersonWrapper>>(socialService.getFollowings(id), HttpStatus.OK);
 	}
 }

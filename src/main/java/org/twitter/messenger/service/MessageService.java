@@ -47,4 +47,15 @@ public class MessageService implements IMessageService {
 		return messageWrapperList;
 	}
 
+
+	@Override
+	public List<MessageWrapper> getFilteredMessages(int personId, String searchTerm) {
+		List<MessageWrapper> messageWrapperList = messageDaoImpl.getFilteredMessages(personId, searchTerm);
+		for (MessageWrapper messageWrapper : messageWrapperList) {
+			Link selfLink = linkTo(PersonController.class).slash(messageWrapper.personId).withSelfRel();
+			messageWrapper.add(selfLink);
+		}
+		return messageWrapperList;
+	}
+
 }

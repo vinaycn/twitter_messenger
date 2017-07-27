@@ -49,8 +49,6 @@ public class ExceptionController {
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleServerException(final Exception exception,
 			final HttpServletRequest request) {
-
-		System.out.println(exception.getMessage());
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Sorry unable to process request");
 		errorMessage.setDeveloperMessage("Error in Sql");
@@ -58,7 +56,6 @@ public class ExceptionController {
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleMethodNotAllowed(final Exception exception,
@@ -71,11 +68,9 @@ public class ExceptionController {
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.METHOD_NOT_ALLOWED);
 	}
 
-	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
-	public ResponseEntity<ErrorMessage> handleBadRequest(final Exception exception,
-			final HttpServletRequest request) {
+	public ResponseEntity<ErrorMessage> handleBadRequest(final Exception exception, final HttpServletRequest request) {
 
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Bad Request");
@@ -83,19 +78,31 @@ public class ExceptionController {
 		errorMessage.setStatus(HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(UserNotFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleUserNotFound(final Exception exception,
 			final HttpServletRequest request) {
 
-		System.out.println("User Not found");
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Invalid person id");
 		errorMessage.setDeveloperMessage(exception.getMessage());
 		errorMessage.setStatus(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
+	}
+
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler(Exception.class)
+	@ResponseBody
+	public ResponseEntity<ErrorMessage> handleInternalServerException(final Exception exception,
+			final HttpServletRequest request) {
+
+		ErrorMessage errorMessage = new ErrorMessage();
+		errorMessage.setMessage("Sorry unable to process request");
+		errorMessage.setDeveloperMessage(exception.getMessage());
+		errorMessage.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

@@ -40,10 +40,17 @@ public class MessageController {
 	 * @return list of all messages for the user and its followers
 	 */
 	@GetMapping
-	public ResponseEntity<List<MessageWrapper>> getMessages(@PathVariable("myId") String id,@RequestParam(required=false) String search){
+	public ResponseEntity<List<MessageWrapper>> getMessages(@PathVariable("myId") String id,@RequestParam(required=false,defaultValue="") String search){
 		if(!personService.validatePerson(Integer.parseInt(id)))
 			throw new UserNotFoundException(Integer.parseInt(id));
-		List<MessageWrapper> messageList = messageService.getMessage(Integer.valueOf(id));
+		
+		System.out.println("Serach Term " +search);
+		List<MessageWrapper> messageList;
+		if(search.isEmpty())
+			messageList  = messageService.getMessage(Integer.valueOf(id));
+		else 
+			messageList  = messageService.getFilteredMessages(Integer.valueOf(id),search);
+		
 		return new ResponseEntity<List<MessageWrapper>>(messageList,HttpStatus.OK);
 	}
 	
@@ -52,7 +59,7 @@ public class MessageController {
 	 * 
 	 * @return HTTP status Created if its is successful
 	 */
-	@RequestMapping(method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> postMessage(@RequestBody Message message,@PathVariable("myId") String myId){
 		if(!personService.validatePerson(Integer.parseInt(myId)))
 			throw new UserNotFoundException(Integer.parseInt(myId));

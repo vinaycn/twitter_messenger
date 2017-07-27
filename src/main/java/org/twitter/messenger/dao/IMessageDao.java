@@ -11,4 +11,6 @@ public interface IMessageDao {
 	
 	
 	public List<MessageWrapper> getMessages(int personId);
+	
+	public List<MessageWrapper> getFilteredMessages(int personId,String serachTerm);
 }

@@ -12,4 +12,6 @@ public interface IMessageService {
 	public void postMessage(Message message);
 	
 	public List<MessageWrapper> getMessage(int personId);
+	
+	public List<MessageWrapper> getFilteredMessages(int personId,String serachTerm);
 }
