@@ -2,16 +2,15 @@ package org.twitter.messenger.controller;
 
 import java.util.List;
 
-import org.apache.catalina.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.twitter.messenger.exceptionhandling.UserNotFoundException;
 import org.twitter.messenger.model.Person;
@@ -25,6 +24,10 @@ import org.twitter.messenger.service.SocialService;
 @RequestMapping("/people/{myId}")
 public class SocialController {
 
+	
+	private static final Logger logger = LoggerFactory.getLogger(SocialController.class);
+	
+	
 	@Autowired
 	private SocialService socialService;
 	
@@ -44,7 +47,7 @@ public class SocialController {
 		int id = Integer.valueOf(personId);
 		if(!personService.validatePerson(id))
 			throw new UserNotFoundException(id);
-		
+		logger.info("getting followers for person with id " +personId);
 		return new ResponseEntity<List<PersonWrapper>>(socialService.getFollowers(id), HttpStatus.OK);
 	}
 
@@ -67,7 +70,8 @@ public class SocialController {
 		if(!personService.validatePerson(Integer.parseInt(followerPersonId)))
 			throw new UserNotFoundException(Integer.parseInt(followerPersonId));
 		
-	    socialService.follow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
+		logger.info("person id with " +personId + "wants to follow person with id " +followerPersonId);
+	   socialService.follow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
 	   return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
@@ -90,6 +94,8 @@ public class SocialController {
 		if(!personService.validatePerson(Integer.parseInt(followerPersonId)))
 			throw new UserNotFoundException(Integer.parseInt(followerPersonId));
 		
+		logger.info("person id with " +personId + "wants to un follow person with id " +followerPersonId);
+		
 		socialService.unFollow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
@@ -109,6 +115,9 @@ public class SocialController {
 		int id = Integer.valueOf(personId);
 		if(!personService.validatePerson(id))
 			throw new UserNotFoundException(id);
+		
+		logger.info("getting following for operson with id " +personId);
+		
 		return new ResponseEntity<List<Person>>(socialService.getFollowings(id), HttpStatus.OK);
 	}
 	
@@ -118,6 +127,9 @@ public class SocialController {
 		int id = Integer.valueOf(personId);
 		if(!personService.validatePerson(id))
 			throw new UserNotFoundException(id);
+		
+		logger.info("getting others people for person with id " +personId);
+		
 		return new ResponseEntity<List<Person>>(socialService.getOtherPeople(id), HttpStatus.OK);
 	}
 }

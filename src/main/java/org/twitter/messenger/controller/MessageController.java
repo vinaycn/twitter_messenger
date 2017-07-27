@@ -3,11 +3,11 @@ package org.twitter.messenger.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +26,7 @@ import org.twitter.messenger.service.PersonService;
 @RequestMapping("/people/{myId}/messages")
 public class MessageController {
 
-	
+	private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 	
 	@Autowired
 	private MessageService messageService;
@@ -51,6 +51,7 @@ public class MessageController {
 		else 
 			messageList  = messageService.getFilteredMessages(Integer.valueOf(id),search);
 		
+		logger.info("getting all messages for the person with id " +id);
 		return new ResponseEntity<List<MessageWrapper>>(messageList,HttpStatus.OK);
 	}
 	

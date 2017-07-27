@@ -3,6 +3,8 @@ package org.twitter.messenger.exceptionhandling;
 import javax.servlet.http.HttpServletRequest;
 
 import org.h2.jdbc.JdbcSQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -18,12 +20,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class ExceptionController {
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(ExceptionController.class);
-
+	private static final Logger logger = LoggerFactory.getLogger(ExceptionController.class);
+	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleNotFoundException(final HttpServletRequest request) {
+		
+		logger.error("404 for the request " + request);
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Resource Not found");
 		errorMessage.setDeveloperMessage(request.getContextPath() + "Not found");
@@ -37,6 +40,8 @@ public class ExceptionController {
 	public ResponseEntity<ErrorMessage> handleUnSupportedMediaException(final Exception exception,
 			final HttpServletRequest request) {
 
+		logger.error("UNSupported Media type for the request " + request );
+		
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("unsupported Media type. Unable to process request");
 		errorMessage.setDeveloperMessage(exception.getMessage());
@@ -49,6 +54,9 @@ public class ExceptionController {
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleServerException(final Exception exception,
 			final HttpServletRequest request) {
+		
+		logger.error("internal Server Error Due to Error in Sql " + exception.getMessage());
+		
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Sorry unable to process request");
 		errorMessage.setDeveloperMessage("Error in Sql");
@@ -61,6 +69,8 @@ public class ExceptionController {
 	public ResponseEntity<ErrorMessage> handleMethodNotAllowed(final Exception exception,
 			final HttpServletRequest request) {
 
+		logger.error("Handler method not found for the request   " + request);
+		
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Method not allowed");
 		errorMessage.setDeveloperMessage(exception.getMessage());
@@ -85,6 +95,8 @@ public class ExceptionController {
 	public ResponseEntity<ErrorMessage> handleUserNotFound(final Exception exception,
 			final HttpServletRequest request) {
 
+		logger.error("Person with the id is Does n't exists" + request);
+		
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Invalid person id");
 		errorMessage.setDeveloperMessage(exception.getMessage());
@@ -98,6 +110,8 @@ public class ExceptionController {
 	public ResponseEntity<ErrorMessage> handleInternalServerException(final Exception exception,
 			final HttpServletRequest request) {
 
+		logger.error("Internal server error for request " + request + "with error message " + exception.getMessage());
+		
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Sorry unable to process request");
 		errorMessage.setDeveloperMessage(exception.getMessage());
