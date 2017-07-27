@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.twitter.messenger.exceptionhandling.DuplicateEntryException;
 import org.twitter.messenger.model.Person;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
 import org.twitter.messenger.utils.FollowersRowMapper;
@@ -47,16 +48,30 @@ public class SocialDaoImpl implements ISocialDao {
 	@Override
 	public void follow(int followingPersonId, int followerPersonId) {
 
-		String checkFollower = "UPDATE followers set followers.follow_flag = :followFlag  WHERE (followers.person_id = :followerPersonId"
-				+ " AND followers.follower_person_id = :followingPersonId)";
 		Map<String, Object> followFields = new HashMap<>();
 		followFields.put("followingPersonId", followingPersonId);
 		followFields.put("followerPersonId", followerPersonId);
+
+		
+		//Check if the user already follow the user
+		String checkDuplicates = "SELECT count(followers.id) FROM followers WHERE (followers.person_id = :followingPersonId) "
+				+ " AND (followers.follower_person_id = :followerPersonId)";
+		int entry = namedParameterJdbcTemplate.queryForObject(checkDuplicates, followFields, Integer.class);
+
+		//if the user follow throw an exception
+		if (entry > 0)
+			throw new DuplicateEntryException();
+
+		//update the follow flag if the following users follows these user 
+		String checkFollower = "UPDATE followers set followers.follow_flag = :followFlag  WHERE (followers.person_id = :followerPersonId"
+				+ " AND followers.follower_person_id = :followingPersonId)";
+
 		followFields.put("followFlag", 'U');
 		int count = namedParameterJdbcTemplate.update(checkFollower, followFields);
 		if (count == 0) {
-			followFields.put("followFlag",'F');
+			followFields.put("followFlag", 'F');
 		}
+		//insert the entry
 		String follow = "INSERT INTO followers (person_id,follower_person_id, follow_flag) VALUES (:followingPersonId,:followerPersonId,:followFlag)";
 		namedParameterJdbcTemplate.update(follow, followFields);
 	}
@@ -69,7 +84,5 @@ public class SocialDaoImpl implements ISocialDao {
 		followingsFields.put("personId", personId);
 		return namedParameterJdbcTemplate.query(followings, followingsFields, new FollowingsRowMapper());
 	}
-
-	
 
 }

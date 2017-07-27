@@ -104,6 +104,21 @@ public class ExceptionController {
 		errorMessage.setStatus(HttpStatus.NOT_FOUND);
 		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.NOT_FOUND);
 	}
+	
+	@ResponseStatus(HttpStatus.CONFLICT)
+	@ExceptionHandler(DuplicateEntryException.class)
+	@ResponseBody
+	public ResponseEntity<ErrorMessage> handleDuplicateEntryForPostRequest(final Exception exception,
+			final HttpServletRequest request) {
+
+		logger.error("Duplicate Entry request made " + exception.getMessage());
+		
+		ErrorMessage errorMessage = new ErrorMessage();
+		errorMessage.setMessage("Duplicate entry. Entry already exists in Database");
+		errorMessage.setDeveloperMessage(exception.getMessage());
+		errorMessage.setStatus(HttpStatus.CONFLICT);
+		return new ResponseEntity<ErrorMessage>(errorMessage, HttpStatus.CONFLICT);
+	}
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Exception.class)
