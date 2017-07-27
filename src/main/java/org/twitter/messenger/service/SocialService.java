@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.twitter.messenger.controller.PersonController;
 import org.twitter.messenger.dao.SocialDaoImpl;
+import org.twitter.messenger.exceptionhandling.DuplicateIdException;
 import org.twitter.messenger.model.Person;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
 
@@ -63,6 +64,7 @@ public class SocialService implements ISocialService {
 	@Transactional
 	public void unFollow(int personId, int followerPersonId) {
 
+		if(personId==followerPersonId) throw new DuplicateIdException(personId, followerPersonId);
 		socialDaoImpl.unFollow(personId, followerPersonId);
 	}
 
@@ -78,16 +80,10 @@ public class SocialService implements ISocialService {
 	@Override
 	@Transactional
 	public void follow(int personId, int followerPersonId) {
+		if(personId==followerPersonId) throw new DuplicateIdException(personId, followerPersonId);
 		socialDaoImpl.follow(personId, followerPersonId);
 	}
 
-	@Override
-	public List<Person> getOtherPeople(int personId) {
-
-		List<Person> otherList = socialDaoImpl.getOtherPeople(personId);
-		otherList.stream().forEach(
-				person -> person.add(linkTo(PersonController.class).slash(person.getPersonId()).withSelfRel()));
-		return otherList;
-	}
+	
 
 }

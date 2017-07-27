@@ -79,6 +79,7 @@ public class ExceptionController {
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(DuplicateIdException.class)
 	@ResponseBody
 	public ResponseEntity<ErrorMessage> handleBadRequest(final Exception exception, final HttpServletRequest request) {
 
