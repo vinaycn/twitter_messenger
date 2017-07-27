@@ -18,9 +18,9 @@ import org.twitter.messenger.modelwrapper.PersonWrapper;
 import org.twitter.messenger.service.SocialService;
 
 
-@CrossOrigin(origins="http://localhost:8080/",maxAge=7000)
+@CrossOrigin(origins="http://localhost:8080")
 @RestController
-@RequestMapping("/people/{followerPersonId}/")
+@RequestMapping("/people/{followerPersonId}")
 public class SocialController {
 
 	@Autowired

@@ -49,6 +49,7 @@ public class ExceptionController {
 	public ResponseEntity<ErrorMessage> handleServerException(final Exception exception,
 			final HttpServletRequest request) {
 
+		System.out.println(exception.getMessage());
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setMessage("Sorry unable to process request");
 		errorMessage.setDeveloperMessage("Error in Sql");

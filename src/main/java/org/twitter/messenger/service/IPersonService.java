@@ -10,4 +10,7 @@ public interface IPersonService {
 
 	
 	public List<Person> getPeople();
+	
+	
+	public Person getPersonInfo(int id);
 }

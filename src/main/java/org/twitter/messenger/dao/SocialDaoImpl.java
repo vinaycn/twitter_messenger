@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.twitter.messenger.modelwrapper.PersonWrapper;
-import org.twitter.messenger.utils.PersonWrapperRowMapper;
+import org.twitter.messenger.utils.FollowersRowMapper;
+import org.twitter.messenger.utils.FollowingsRowMapper;
 
 @Repository
 public class SocialDaoImpl implements ISocialDao {
@@ -20,12 +21,11 @@ public class SocialDaoImpl implements ISocialDao {
 	public List<PersonWrapper> getFollowers(int personId) {
 		// TODO Auto-generated method stub
 
-		String followers = "SELECT people.name, people.handle, people.id, followers.follow_flag FROM (people JOIN "
-				+ " followers ON (people.id = followers.person_id)) WHERE people.id "
-				+ "in (SELECT followers.follower_person_id FROM followers WHERE (followers.person_id = :personId))";
+		String followers = "SELECT followers.follower_person_id, followers.follow_flag, people.name, people.handle FROM (followers "
+				+ " JOIN people ON (followers.follower_person_id = people.id)) WHERE (followers.person_id = :personId)";
 		Map<String, Object> followerFields = new HashMap<>();
 		followerFields.put("personId", personId);
-		return namedParameterJdbcTemplate.query(followers, followerFields, new PersonWrapperRowMapper());
+		return namedParameterJdbcTemplate.query(followers, followerFields, new FollowersRowMapper());
 	}
 
 	@Override
@@ -62,12 +62,11 @@ public class SocialDaoImpl implements ISocialDao {
 
 	@Override
 	public List<PersonWrapper> getFollowings(int personId) {
-		String followings = "SELECT people.name, people.handle, people.id,followers.follow_flag FROM (people JOIN "
-				+ " followers ON (people.id = followers.person_id)) WHERE people.id "
-				+ "in (SELECT followers.person_id FROM followers WHERE (followers.follower_person_id = :personId)) ";
+		String followings = "SELECT followers.person_id, followers.follow_flag, people.name, people.handle FROM (followers "
+				+ " JOIN people ON (followers.person_id = people.id)) WHERE (followers.follower_person_id = :personId)";
 		Map<String, Object> followingsFields = new HashMap<>();
 		followingsFields.put("personId", personId);
-		return namedParameterJdbcTemplate.query(followings, followingsFields, new PersonWrapperRowMapper());
+		return namedParameterJdbcTemplate.query(followings, followingsFields, new FollowingsRowMapper());
 	}
 
 }

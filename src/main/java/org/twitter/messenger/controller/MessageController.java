@@ -21,7 +21,7 @@ import org.twitter.messenger.modelwrapper.MessageWrapper;
 import org.twitter.messenger.service.MessageService;
 import org.twitter.messenger.service.PersonService;
 
-@CrossOrigin(origins="http://localhost:8080/",maxAge=7000)
+@CrossOrigin(origins="http://localhost:8080/")
 @RestController
 @RequestMapping("/people/{myId}/messages")
 public class MessageController {

@@ -9,4 +9,6 @@ public interface IPersonDao {
 	public int validatePerson(int personId);
 	
 	public List<Person> getPeople();
+	
+	public Person getPersonInfo(int id);
 }
