@@ -111,4 +111,13 @@ public class SocialController {
 			throw new UserNotFoundException(id);
 		return new ResponseEntity<List<Person>>(socialService.getFollowings(id), HttpStatus.OK);
 	}
+	
+	@GetMapping("/others")
+	public ResponseEntity<List<Person>> getOtherPeople(@PathVariable("myId") String personId) {
+		
+		int id = Integer.valueOf(personId);
+		if(!personService.validatePerson(id))
+			throw new UserNotFoundException(id);
+		return new ResponseEntity<List<Person>>(socialService.getOtherPeople(id), HttpStatus.OK);
+	}
 }

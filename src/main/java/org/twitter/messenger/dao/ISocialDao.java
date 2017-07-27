@@ -11,6 +11,8 @@ public interface ISocialDao {
 	
 	public List<Person> getFollowings(int personId);
 	
+	public List<Person> getOtherPeople(int personId);
+	
 	public void unFollow(int personId,int followerPersonId);
 	
 	public void follow(int personId,int followerPersonId);

@@ -18,14 +18,13 @@ public class SocialService implements ISocialService {
 	@Autowired
 	private SocialDaoImpl socialDaoImpl;
 
-	
 	/***
 	 * 
 	 * return all followers for the given personId
 	 * 
 	 * @param personId
 	 * 
-	 * @return will return list followers for the given personId 
+	 * @return will return list followers for the given personId
 	 */
 	@Override
 	public List<PersonWrapper> getFollowers(int personId) {
@@ -35,14 +34,13 @@ public class SocialService implements ISocialService {
 		return followersList;
 	}
 
-	
 	/***
 	 * 
 	 * return all following for the given personId
 	 * 
 	 * @param personId
 	 * 
-	 * @return will return list following for the given personId 
+	 * @return will return list following for the given personId
 	 */
 	@Override
 	public List<Person> getFollowings(int personId) {
@@ -57,9 +55,9 @@ public class SocialService implements ISocialService {
 	 * unfollow a person
 	 * 
 	 * @param personId
-	 *           personId to  unfollow
+	 *            personId to unfollow
 	 * @param followerPersonId
-	 *           followerPersonId who raised unfollow request
+	 *            followerPersonId who raised unfollow request
 	 */
 	@Override
 	@Transactional
@@ -68,20 +66,28 @@ public class SocialService implements ISocialService {
 		socialDaoImpl.unFollow(personId, followerPersonId);
 	}
 
-	
 	/***
 	 * 
 	 * follow a person
 	 * 
 	 * @param personId
-	 *           personId to  follow
+	 *            personId to follow
 	 * @param followerPersonId
-	 *           followerPersonId who raised follow request 
+	 *            followerPersonId who raised follow request
 	 */
 	@Override
 	@Transactional
 	public void follow(int personId, int followerPersonId) {
 		socialDaoImpl.follow(personId, followerPersonId);
+	}
+
+	@Override
+	public List<Person> getOtherPeople(int personId) {
+
+		List<Person> otherList = socialDaoImpl.getOtherPeople(personId);
+		otherList.stream().forEach(
+				person -> person.add(linkTo(PersonController.class).slash(person.getPersonId()).withSelfRel()));
+		return otherList;
 	}
 
 }

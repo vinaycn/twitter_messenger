@@ -70,4 +70,14 @@ public class SocialDaoImpl implements ISocialDao {
 		return namedParameterJdbcTemplate.query(followings, followingsFields, new FollowingsRowMapper());
 	}
 
+	@Override
+	public List<Person> getOtherPeople(int personId) {
+		String others = "SELECT people.id, people.name, people.handle FROM people WHERE (people.id "
+				+ " NOT EXISTS (SELECT followers.person_id from followers WHERE (followers.follower_person_id = :personId))"
+				+ " (SELECT followers.follower.person_id from followers WHERE (followers.person_id = :personID)))";
+		Map<String, Object> othersFields = new HashMap<>();
+		othersFields.put("personId", personId);
+		return namedParameterJdbcTemplate.query(others, othersFields, new FollowingsRowMapper());
+	}
+
 }
