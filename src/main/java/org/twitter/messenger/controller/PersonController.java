@@ -40,7 +40,7 @@ public class PersonController {
 	 *           
 	 * @return person object for the given PersonId
 	 */
-	@RequestMapping(method=RequestMethod.POST,value = "/{personId}")
+	@RequestMapping(method=RequestMethod.GET,value = "/{personId}")
 	public ResponseEntity<Person> getPerson(@PathVariable("personId") String personId) {
 		return new ResponseEntity<Person>(personService.getPersonInfo(Integer.valueOf(personId)), HttpStatus.OK);
 	}
