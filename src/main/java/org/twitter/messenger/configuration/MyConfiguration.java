@@ -9,12 +9,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MyConfiguration {
 
-    @Bean
+	@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
+                //registry.addMapping("/**");
+                registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8080")
+                .allowedMethods("PUT", "DELETE","GET","POST","OPTIONS")
+                .allowedHeaders("Content-Type", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Authorization", "X-Requested-With", "requestId", "Correlation-Id")
+                .exposedHeaders("Access-Control-Allow-Origin")
+                .allowCredentials(false).maxAge(3600);
             }
         };
     }
