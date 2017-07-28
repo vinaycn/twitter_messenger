@@ -94,7 +94,7 @@ public class SocialController {
 		if(!personService.validatePerson(Integer.parseInt(followerPersonId)))
 			throw new UserNotFoundException(Integer.parseInt(followerPersonId));
 		
-		logger.info("person id with " +personId + "wants to un follow person with id " +followerPersonId);
+		logger.info("person id with " +personId + "wants to unfollow person with id " +followerPersonId);
 		
 		socialService.unFollow(Integer.valueOf(personId), Integer.valueOf(followerPersonId));
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

@@ -51,7 +51,7 @@ public class MessageDaoImpl implements IMessageDao {
 	
 		String getMessageQuery = "SELECT messages.content, messages.person_id, people.name FROM (messages "
 				+ " JOIN people  ON (messages.person_id = people.id)) WHERE"
-				+ " (messages.person_id in (SELECT followers.follower_person_id FROM followers WHERE followers.person_id = :personId)"
+				+ " (messages.person_id in (SELECT followers.person_id FROM followers WHERE followers.follower_person_id = :personId)"
 				+ " OR (messages.person_id = :personId))";
 
 		Map<String,Integer> namedParameters = Collections.singletonMap("personId", personId);
