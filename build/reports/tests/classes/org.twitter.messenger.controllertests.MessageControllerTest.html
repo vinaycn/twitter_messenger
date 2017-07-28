@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.147s</div>
+<div class="counter">0.151s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">getMessages</td>
-<td>0.147s</td>
+<td>0.151s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,10 +87,10 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>&quot;2017-07-27 21:10:10 - Neither @ContextConfiguration nor @ContextHierarchy found for test class [org.twitter.messenger.controllertests.MessageControllerTest], using SpringBootContextLoader
-&quot;&quot;2017-07-27 21:10:10 - Could not detect default resource locations for test class [org.twitter.messenger.controllertests.MessageControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-&quot;&quot;2017-07-27 21:10:10 - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-&quot;&quot;2017-07-27 21:10:10 - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@41f3665, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5af6ad65, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2f2bfeca, org.springframework.test.context.support.DirtiesContextTestExecutionListener@53d3e95, org.springframework.test.context.transaction.TransactionalTestExecutionListener@78ec9c49, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@171e9bb4, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6733fa33, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@b96a9d6, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@17047239, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@74a49856, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@cbe0693, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@32d8c6cb]
+<pre>&quot;2017-07-28 01:47:23 - Neither @ContextConfiguration nor @ContextHierarchy found for test class [org.twitter.messenger.controllertests.MessageControllerTest], using SpringBootContextLoader
+&quot;&quot;2017-07-28 01:47:23 - Could not detect default resource locations for test class [org.twitter.messenger.controllertests.MessageControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+&quot;&quot;2017-07-28 01:47:23 - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+&quot;&quot;2017-07-28 01:47:23 - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@176ba7c4, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3c0256ba, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5b279c43, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1b979da9, org.springframework.test.context.transaction.TransactionalTestExecutionListener@51085c98, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7f916785, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@18b329b0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3fee95da, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@2c11f223, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@5848056b, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@59b7597b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@123c57d2]
 &quot;
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -100,37 +100,33 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v1.4.4.RELEASE)
 
-&quot;2017-07-27 21:10:10 - Starting MessageControllerTest on vinay-HP-Spectre-x360-Convertible with PID 8771 (started by vinay in /home/vinay/Downloads/challenge)
-&quot;&quot;2017-07-27 21:10:10 - No active profile set, falling back to default profiles: default
-&quot;&quot;2017-07-27 21:10:10 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@34535e1: startup date [Thu Jul 27 21:10:10 EDT 2017]; root of context hierarchy
-&quot;&quot;2017-07-27 21:10:10 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2439557e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-&quot;&quot;2017-07-27 21:10:11 - Executing SQL script from class path resource [schema.sql]
-&quot;&quot;2017-07-27 21:10:11 - Executed SQL script from class path resource [schema.sql] in 7 ms.
-&quot;&quot;2017-07-27 21:10:11 - Executing SQL script from class path resource [data.sql]
-&quot;&quot;2017-07-27 21:10:11 - Executed SQL script from class path resource [data.sql] in 14 ms.
-&quot;&quot;2017-07-27 21:10:11 - 
-
-Using default security password: 5eecf13a-dd43-4aef-bf42-dfa868d1b4d8
-
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{myId}/messages],methods=[POST]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.lang.Void&gt; org.twitter.messenger.controller.MessageController.postMessage(org.twitter.messenger.model.Message,java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{myId}/messages],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.modelwrapper.MessageWrapper&gt;&gt; org.twitter.messenger.controller.MessageController.getMessages(java.lang.String,java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.model.Person&gt;&gt; org.twitter.messenger.controller.PersonController.getPeople()
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{personId}],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;org.twitter.messenger.model.Person&gt; org.twitter.messenger.controller.PersonController.getPerson(java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{myId}/followers],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.modelwrapper.PersonWrapper&gt;&gt; org.twitter.messenger.controller.SocialController.getFollowers(java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{myId}/following],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.model.Person&gt;&gt; org.twitter.messenger.controller.SocialController.getFollowings(java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{myId}/followers/{personId}],methods=[DELETE]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.lang.Void&gt; org.twitter.messenger.controller.SocialController.unFollow(java.lang.String,java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/people/{myId}/followers/{followPersonId}],methods=[POST]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.lang.Void&gt; org.twitter.messenger.controller.SocialController.addFollower(java.lang.String,java.lang.String)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/error],produces=[text/html]}&quot; onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-&quot;&quot;2017-07-27 21:10:11 - Mapped &quot;{[/error]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.Map&lt;java.lang.String, java.lang.Object&gt;&gt; org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-&quot;&quot;2017-07-27 21:10:11 - Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@490dd528, org.springframework.security.web.context.SecurityContextPersistenceFilter@3b02da63, org.springframework.security.web.header.HeaderWriterFilter@e8aac12, org.springframework.web.filter.CorsFilter@2b83d4a9, org.springframework.security.web.authentication.logout.LogoutFilter@6c7e0464, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@23421443, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71cdbcb3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2afc74a4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54f8943e, org.springframework.security.web.session.SessionManagementFilter@28cdc12e, org.springframework.security.web.access.ExceptionTranslationFilter@5423c4d4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@100df126]
-&quot;&quot;2017-07-27 21:10:11 - Creating filter chain: Ant [pattern='/h2-console/**'], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@527c6a02, org.springframework.security.web.context.SecurityContextPersistenceFilter@3d499992, org.springframework.security.web.header.HeaderWriterFilter@22a4537, org.springframework.security.web.authentication.logout.LogoutFilter@29856fbb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5871e610, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ec1f10e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e121e1c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6c45f50b, org.springframework.security.web.session.SessionManagementFilter@4cf762ff, org.springframework.security.web.access.ExceptionTranslationFilter@71d85c61, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42f94a61]
-&quot;&quot;2017-07-27 21:10:11 - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@34535e1: startup date [Thu Jul 27 21:10:10 EDT 2017]; root of context hierarchy
-&quot;&quot;2017-07-27 21:10:11 - Detected @ExceptionHandler methods in exceptionController
-&quot;&quot;2017-07-27 21:10:11 - Started MessageControllerTest in 1.216 seconds (JVM running for 5.952)
-&quot;&quot;2017-07-27 21:10:11 - Initializing Spring FrameworkServlet ''
-&quot;&quot;2017-07-27 21:10:11 - FrameworkServlet '': initialization started
-&quot;&quot;2017-07-27 21:10:11 - FrameworkServlet '': initialization completed in 9 ms
-&quot;&quot;2017-07-27 21:10:11 - getting all messages for the person with id 1
+&quot;2017-07-28 01:47:23 - Starting MessageControllerTest on vinay-HP-Spectre-x360-Convertible with PID 5165 (started by vinay in /home/vinay/Downloads/challenge)
+&quot;&quot;2017-07-28 01:47:23 - No active profile set, falling back to default profiles: default
+&quot;&quot;2017-07-28 01:47:23 - Refreshing org.springframework.web.context.support.GenericWebApplicationContext@4fe16ca8: startup date [Fri Jul 28 01:47:23 EDT 2017]; root of context hierarchy
+&quot;&quot;2017-07-28 01:47:23 - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$96b482ba] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+&quot;&quot;2017-07-28 01:47:24 - Executing SQL script from class path resource [schema.sql]
+&quot;&quot;2017-07-28 01:47:24 - Executed SQL script from class path resource [schema.sql] in 7 ms.
+&quot;&quot;2017-07-28 01:47:24 - Executing SQL script from class path resource [data.sql]
+&quot;&quot;2017-07-28 01:47:24 - Executed SQL script from class path resource [data.sql] in 15 ms.
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{myId}/messages],methods=[POST]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.lang.Void&gt; org.twitter.messenger.controller.MessageController.postMessage(org.twitter.messenger.model.Message,java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{myId}/messages],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.modelwrapper.MessageWrapper&gt;&gt; org.twitter.messenger.controller.MessageController.getMessages(java.lang.String,java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{personId}],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;org.twitter.messenger.model.Person&gt; org.twitter.messenger.controller.PersonController.getPerson(java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.model.Person&gt;&gt; org.twitter.messenger.controller.PersonController.getPeople()
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{myId}/followers/{personId}],methods=[DELETE]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.lang.Void&gt; org.twitter.messenger.controller.SocialController.unFollow(java.lang.String,java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{myId}/followers],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.modelwrapper.PersonWrapper&gt;&gt; org.twitter.messenger.controller.SocialController.getFollowers(java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{myId}/following],methods=[GET]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.List&lt;org.twitter.messenger.model.Person&gt;&gt; org.twitter.messenger.controller.SocialController.getFollowings(java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/people/{myId}/followers/{followPersonId}],methods=[POST]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.lang.Void&gt; org.twitter.messenger.controller.SocialController.addFollower(java.lang.String,java.lang.String)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/error],produces=[text/html]}&quot; onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+&quot;&quot;2017-07-28 01:47:24 - Mapped &quot;{[/error]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.Map&lt;java.lang.String, java.lang.Object&gt;&gt; org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+&quot;&quot;2017-07-28 01:47:24 - Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42f94a61, org.springframework.security.web.context.SecurityContextPersistenceFilter@5ba55d5e, org.springframework.security.web.header.HeaderWriterFilter@6572ce7b, org.springframework.web.filter.CorsFilter@527c6a02, org.springframework.security.web.authentication.logout.LogoutFilter@4cf762ff, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@156f6fba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71d85c61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22a4537, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6c45f50b, org.springframework.security.web.session.SessionManagementFilter@59f2ec29, org.springframework.security.web.access.ExceptionTranslationFilter@753bfd86, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@17952244]
+&quot;&quot;2017-07-28 01:47:24 - Creating filter chain: Ant [pattern='/h2-console/**'], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d912255, org.springframework.security.web.context.SecurityContextPersistenceFilter@1f67e6db, org.springframework.security.web.header.HeaderWriterFilter@5677fb02, org.springframework.security.web.authentication.logout.LogoutFilter@7afc272a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5a0d4790, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@23484db5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a0e1d35, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a697f96, org.springframework.security.web.session.SessionManagementFilter@4c8f89af, org.springframework.security.web.access.ExceptionTranslationFilter@6b0ae329, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2acb9e19]
+&quot;&quot;2017-07-28 01:47:24 - Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@4fe16ca8: startup date [Fri Jul 28 01:47:23 EDT 2017]; root of context hierarchy
+&quot;&quot;2017-07-28 01:47:24 - Detected @ExceptionHandler methods in exceptionController
+&quot;&quot;2017-07-28 01:47:24 - Started MessageControllerTest in 1.29 seconds (JVM running for 6.201)
+&quot;&quot;2017-07-28 01:47:24 - Initializing Spring FrameworkServlet ''
+&quot;&quot;2017-07-28 01:47:24 - FrameworkServlet '': initialization started
+&quot;&quot;2017-07-28 01:47:24 - FrameworkServlet '': initialization completed in 13 ms
+&quot;&quot;2017-07-28 01:47:24 - getting all messages for the person with id 1
 &quot;</pre>
 </span>
 </div>
@@ -142,7 +138,7 @@ Using default security password: 5eecf13a-dd43-4aef-bf42-dfa868d1b4d8
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 2.13</a> at Jul 27, 2017 9:10:14 PM</p>
+<a href="http://www.gradle.org">Gradle 2.13</a> at Jul 28, 2017 1:47:26 AM</p>
 </div>
 </div>
 </body>

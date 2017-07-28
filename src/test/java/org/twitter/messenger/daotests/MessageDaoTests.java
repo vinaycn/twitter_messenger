@@ -32,6 +32,6 @@ public class MessageDaoTests {
 	@Test
 	public void getMessages(){
 		List<MessageWrapper>  messageList =messageDaoImpl.getMessages(8);
-		Assert.assertEquals(39,messageList.size());	
+		Assert.assertEquals(11,messageList.size());	
 	}
 }

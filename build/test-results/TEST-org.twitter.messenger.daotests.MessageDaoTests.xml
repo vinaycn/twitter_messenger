@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.twitter.messenger.daotests.MessageDaoTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-07-28T01:10:10" hostname="vinay-HP-Spectre-x360-Convertible" time="0.022">
+<testsuite name="org.twitter.messenger.daotests.MessageDaoTests" tests="2" skipped="0" failures="1" errors="0" timestamp="2017-07-28T05:47:23" hostname="vinay-HP-Spectre-x360-Convertible" time="0.024">
   <properties/>
-  <testcase name="testContext" classname="org.twitter.messenger.daotests.MessageDaoTests" time="0.002"/>
-  <testcase name="getMessages" classname="org.twitter.messenger.daotests.MessageDaoTests" time="0.019"/>
-  <system-out><![CDATA["2017-07-27 21:10:10 - Neither @ContextConfiguration nor @ContextHierarchy found for test class [org.twitter.messenger.daotests.MessageDaoTests], using SpringBootContextLoader
-""2017-07-27 21:10:10 - Could not detect default resource locations for test class [org.twitter.messenger.daotests.MessageDaoTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-""2017-07-27 21:10:10 - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-""2017-07-27 21:10:10 - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6c45d84e, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@23992867, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@249ee379, org.springframework.test.context.support.DirtiesContextTestExecutionListener@80befaa, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4aced14d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@20fe0263, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@7328a82e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@24896f5e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1871863b, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@484c724c, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@7e13dab3, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@110fa9b0]
+  <testcase name="testContext" classname="org.twitter.messenger.daotests.MessageDaoTests" time="0.003"/>
+  <testcase name="getMessages" classname="org.twitter.messenger.daotests.MessageDaoTests" time="0.021">
+    <failure message="java.lang.AssertionError: expected:&lt;39&gt; but was:&lt;11&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;39&gt; but was:&lt;11&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:645)
+	at org.junit.Assert.assertEquals(Assert.java:631)
+	at org.twitter.messenger.daotests.MessageDaoTests.getMessages(MessageDaoTests.java:35)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:112)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:56)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.messaging.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.messaging.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.messaging.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:364)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:54)
+	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:40)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+</failure>
+  </testcase>
+  <system-out><![CDATA["2017-07-28 01:47:23 - Neither @ContextConfiguration nor @ContextHierarchy found for test class [org.twitter.messenger.daotests.MessageDaoTests], using SpringBootContextLoader
+""2017-07-28 01:47:23 - Could not detect default resource locations for test class [org.twitter.messenger.daotests.MessageDaoTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+""2017-07-28 01:47:23 - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+""2017-07-28 01:47:23 - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1871863b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@484c724c, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7e13dab3, org.springframework.test.context.support.DirtiesContextTestExecutionListener@110fa9b0, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5dbb5f4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2eae6911, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4e08e835, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@22268a6d, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7a0aefc8, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@27b1e779, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2ef1eafa, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@389278ab]
 "]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
