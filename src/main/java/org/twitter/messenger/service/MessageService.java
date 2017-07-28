@@ -20,7 +20,7 @@ public class MessageService implements IMessageService {
 
 	
 	/***
-	 * will post a message for one person
+	 * will post a message for given person
 	 * 
 	 * @param message 
 	 *         message body
@@ -32,7 +32,7 @@ public class MessageService implements IMessageService {
 
 	
 	/***
-	 * Get all the messages for the given personId
+	 * Get all the messages for the given personId and his/her followers
 	 * 
 	 * @param personId 
 	 * @return return list of MessageWrapper for the given personId

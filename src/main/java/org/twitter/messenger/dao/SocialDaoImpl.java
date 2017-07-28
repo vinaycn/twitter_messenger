@@ -19,6 +19,15 @@ public class SocialDaoImpl implements ISocialDao {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+	
+	/***
+	 * Will make database call to retrieve the list of all followers for the person!
+	 * 
+	 * @param personId
+	 *          given personId
+	 * 
+	 * @return list of followers for the given personId
+	 */
 	@Override
 	public List<PersonWrapper> getFollowers(int personId) {
 		// TODO Auto-generated method stub
@@ -30,6 +39,17 @@ public class SocialDaoImpl implements ISocialDao {
 		return namedParameterJdbcTemplate.query(followers, followerFields, new FollowersRowMapper());
 	}
 
+	/***
+	 * Will make database call to unfollow an User. First follow_flag is updated to 'F' if the 
+	 * entry exists in the database for  followerPersonId and unFollowpersonId . And Second the 
+	 * entry for unFollowpersonId and followerPersonId will be deleted.
+	 * 
+	 * @param followerPersonId
+	 *          the person id who wants to unfollow
+	 * @param unFollowpersonId
+	 *          the person id who will be unfollowed
+	 * 
+	 */
 	@Override
 	public void unFollow(int unFollowpersonId, int followerPersonId) {
 		String unFollowQuery = "UPDATE followers set follow_flag =:followFlag WHERE "
@@ -45,6 +65,19 @@ public class SocialDaoImpl implements ISocialDao {
 		namedParameterJdbcTemplate.update(deleteFollower, unFollowFields);
 	}
 
+	
+	
+	/***
+	 * Will make database call to follow an User. First follow_flag is updated to 'U' if the 
+	 * entry exists in the database for  followerPersonId and unFollowpersonId . And Second the 
+	 * entry for followingPersonId and followerPersonId will be added.
+	 * 
+	 * @param followerPersonId
+	 *          the person id who wants to follow
+	 * @param followingPersonId
+	 *          the person id who will be followed
+	 * 
+	 */
 	@Override
 	public void follow(int followingPersonId, int followerPersonId) {
 
@@ -76,6 +109,15 @@ public class SocialDaoImpl implements ISocialDao {
 		namedParameterJdbcTemplate.update(follow, followFields);
 	}
 
+	
+	/***
+	 * Will make database call to retrieve the list of all following for the person!
+	 * 
+	 * @param personId
+	 *          given personId
+	 * 
+	 * @return list of following for the given personId
+	 */
 	@Override
 	public List<Person> getFollowings(int personId) {
 		String followings = "SELECT followers.person_id, people.name, people.handle FROM (followers "

@@ -18,6 +18,13 @@ public class MessageDaoImpl implements IMessageDao {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+	
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 */
 	@Override
 	public void addMessage(Message message) {
 		String insert = "INSERT INTO messages (person_id,content) VALUES (:personId,:content)";
@@ -27,6 +34,17 @@ public class MessageDaoImpl implements IMessageDao {
 		namedParameterJdbcTemplate.update(insert, parameters);
 	}
 
+	
+	/***
+	 * 
+	 * this method makes database call to retrieve the messages of the 
+	 * given user and users followers
+	 * 
+	 * @param personId
+	 *          person id
+	 * 
+	 * @return list of messages posted by the users and user followers
+	 */
 	@Override
 	public List<MessageWrapper> getMessages(int personId) {
 

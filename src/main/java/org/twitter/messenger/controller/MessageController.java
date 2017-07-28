@@ -43,8 +43,6 @@ public class MessageController {
 	public ResponseEntity<List<MessageWrapper>> getMessages(@PathVariable("myId") String id,@RequestParam(required=false,defaultValue="") String search){
 		if(!personService.validatePerson(Integer.parseInt(id)))
 			throw new UserNotFoundException(Integer.parseInt(id));
-		
-		System.out.println("Serach Term " +search);
 		List<MessageWrapper> messageList;
 		if(search.isEmpty())
 			messageList  = messageService.getMessage(Integer.valueOf(id));

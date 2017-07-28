@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,7 +21,7 @@ import org.twitter.messenger.modelwrapper.PersonWrapper;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=ChallengeApplication.class)
+@SpringBootTest(classes=ChallengeApplication.class)
 @Transactional
 public class SocialDaoTests {
 
@@ -36,24 +37,24 @@ public class SocialDaoTests {
 	
 	@Test
 	public void getFollowers(){
-	 List<PersonWrapper> followersList= socialDaoImpl.getFollowers(8);
-	 Assert.assertEquals(2,followersList.size());
+	 List<PersonWrapper> followersList= socialDaoImpl.getFollowers(2);
+	 Assert.assertEquals(3,followersList.size());
 	}
 	
 	
 	@Test
 	public void getFollowings(){
 		List<Person> followingList= socialDaoImpl.getFollowings(3);
-		Assert.assertEquals(2,followingList.size());
+		Assert.assertEquals(3,followingList.size());
 	}
 	
 	
 	@Test
 	public void follow(){
-		//personId 2 wants to follow 1
+		//personId 1 wants to follow 2
 		socialDaoImpl.follow(2,1);
 		List<Person> followingList= socialDaoImpl.getFollowings(1);
-		Assert.assertEquals(2,followingList.size());
+		Assert.assertEquals(3,followingList.size());
 	}
 	
 	
