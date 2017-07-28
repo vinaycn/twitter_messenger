@@ -21,8 +21,7 @@ public class MessageDaoImpl implements IMessageDao {
 	
 	
 	/**
-	 * 
-	 * 
+	 * add message for the user
 	 * 
 	 */
 	@Override
