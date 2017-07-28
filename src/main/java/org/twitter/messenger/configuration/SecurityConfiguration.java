@@ -1,7 +1,5 @@
 package org.twitter.messenger.configuration;
 
-import static org.assertj.core.api.Assertions.shouldHaveThrown;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
